@@ -8,7 +8,7 @@ app = FastAPI()
 @app.get("/checkk")
 async def check_buttons():
     return JSONResponse(content={
-            "status": "ohohohohoo88888",
+            "status": "ohohohohoo99999",
             "prova": "prova"
         }, status_code=500)
         
@@ -19,6 +19,18 @@ async def check_buttons():
             browser = await p.chromium.launch(headless=True)
             context = await browser.new_context()
             page = await context.new_page()
+            await page.add_init_script("""
+                Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+                Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
+                Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3] });
+                const originalQuery = window.navigator.permissions.query;
+                window.navigator.permissions.query = (parameters) => (
+                parameters.name === 'notifications' ?
+                Promise.resolve({ state: Notification.permission }) :
+                originalQuery(parameters)
+                );
+            """)
+
             await page.goto("https://www.popmart.com/it/products/5610", timeout=30000)
             await page.wait_for_timeout(15000)  # aspetta caricamento
             
