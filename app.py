@@ -29,7 +29,8 @@ async def check_buttons():
             return JSONResponse(content={
                 "buy_now_found": bool(buy_now),
                 "add_to_cart_found": bool(add_to_cart),
-                "status": "success"
+                "status": "success",
+                "page": page
             })
 
     except Exception as e:
