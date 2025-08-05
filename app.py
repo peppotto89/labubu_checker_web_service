@@ -8,7 +8,7 @@ app = FastAPI()
 @app.get("/checkk")
 async def check_buttons():
     return JSONResponse(content={
-            "status": "ohohohohoo333333",
+            "status": "ohohohohoo444444",
             "error": "error erroe"
         }, status_code=500)
         
@@ -22,16 +22,15 @@ async def check_buttons():
             await page.goto("https://www.popmart.com/it/products/5610", timeout=30000)
             await page.wait_for_timeout(5000)  # aspetta caricamento
 
-            buy_now = await page.locator("text=/BUY NOW/i").count()
-            add_to_cart = await page.locator("text=/ADD TO CART/i").count()
+            #buy_now = await page.locator("text=/BUY NOW/i").count()
+            #add_to_cart = await page.locator("text=/ADD TO CART/i").count()
 
             await browser.close()
 
             return JSONResponse(content={
-                "buy_now_found": bool(buy_now),
-                "add_to_cart_found": bool(add_to_cart),
-                "status": "success",
-                "page": page
+                "buy_now_found": false,
+                "add_to_cart_found": false,
+                "status": "success"
             })
 
     except Exception as e:
