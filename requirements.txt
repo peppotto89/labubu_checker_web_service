@@ -2,3 +2,4 @@ fastapi
 uvicorn[standard]
 playwright
 pyppeteer
+websockets==9.1
