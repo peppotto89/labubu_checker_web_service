@@ -41,14 +41,14 @@ async def checkpypeter():
     #add_to_cart = await page.querySelectorEval('div', '''(els) => {
     #    return Array.from(document.querySelectorAll('div')).some(el => el.innerText.toLowerCase().includes('add to cart'));
     #}''')
-    captcha_present = await page.evaluate('''() => {
-        return document.body.innerText.toLowerCase().includes("verify you are human");
-    }''')
+    content_exists = await page.evaluate('''() => {
+        return document.body.innerText.trim().length > 0;
+    }''', timeout = 15000)
 
-    if captcha_present:
-        print("Captcha presente!")
+    if content_exists:
+        print("content presente!")
     else:
-        print("Captcha NON presente")
+        print("contenta NON presente")
         print(f"Buy Now found: {buy_now}")
         print(f"Add To Cart found: {add_to_cart}")
 
@@ -60,6 +60,6 @@ async def checkpypeter():
 @app.get("/checkk")
 async def check_buttons():
     return JSONResponse(content={
-            "status": "ohohohohoo4444",
+            "status": "ohohohohoo55555",
             "prova": "prova"
         }, status_code=500)
