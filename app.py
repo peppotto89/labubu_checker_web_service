@@ -21,14 +21,14 @@ async def check_buttons():
             await page.goto("https://www.popmart.com/it/products/5610", timeout=30000)
             await page.wait_for_timeout(5000)  # aspetta caricamento
 
-            buy_now_button = await page.query_selector("text=/buy now/i")
-            add_to_cart_button = await page.query_selector("text=/add to cart/i")
+            buy_now = await page.locator("text=/BUY NOW/i").count()
+            add_to_cart = await page.locator("text=/ADD TO CART/i").count()
 
             await browser.close()
 
             return JSONResponse(content={
-                "buy_now_found": bool(buy_now_button),
-                "add_to_cart_found": bool(add_to_cart_button),
+                "buy_now_found": bool(buy_now),
+                "add_to_cart_found": bool(add_to_cart),
                 "status": "success"
             })
 
