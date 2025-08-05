@@ -56,7 +56,7 @@ async def checkpypeter():
 @app.get("/checkk")
 async def check_buttons():
     return JSONResponse(content={
-            "status": "ohohohohoo22222",
+            "status": "ohohohohoo33333",
             "prova": "prova"
         }, status_code=500)
         
