@@ -34,26 +34,32 @@ async def checkpypeter():
     await asyncio.sleep(5)
 
     # Cerca i bottoni per testo
-    buy_now = await page.querySelectorEval('div', '''(els) => {
-        return Array.from(document.querySelectorAll('div')).some(el => el.innerText.toLowerCase().includes('buy now'));
+    #buy_now = await page.querySelectorEval('div', '''(els) => {
+    #    return Array.from(document.querySelectorAll('div')).some(el => el.innerText.toLowerCase().includes('buy now'));
+    #}''')
+
+    #add_to_cart = await page.querySelectorEval('div', '''(els) => {
+    #    return Array.from(document.querySelectorAll('div')).some(el => el.innerText.toLowerCase().includes('add to cart'));
+    #}''')
+    captcha_present = await page.evaluate('''() => {
+        return document.body.innerText.toLowerCase().includes("verify you are human");
     }''')
 
-    add_to_cart = await page.querySelectorEval('div', '''(els) => {
-        return Array.from(document.querySelectorAll('div')).some(el => el.innerText.toLowerCase().includes('add to cart'));
-    }''')
-
-    print(f"Buy Now found: {buy_now}")
-    print(f"Add To Cart found: {add_to_cart}")
+    if captcha_present:
+        print("Captcha presente!")
+    else:
+        print("Captcha NON presente")
+        print(f"Buy Now found: {buy_now}")
+        print(f"Add To Cart found: {add_to_cart}")
 
     await browser.close()
     return JSONResponse(content={
-                "buynow": f"{buy_now}",
-                "addcart": f"{add_to_cart}"
+                "captcha": f"{captcha_present}"
             })
 
 @app.get("/checkk")
 async def check_buttons():
     return JSONResponse(content={
-            "status": "ohohohohoo33333",
+            "status": "ohohohohoo4444",
             "prova": "prova"
         }, status_code=500)
