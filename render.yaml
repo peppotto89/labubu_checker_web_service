@@ -1,1 +1,13 @@
-playwright install
+services:
+  - type: web
+    name: nome-tuo-servizio
+    env: docker
+    branch: main
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    # porta che espone il container (FastAPI espone 8000)
+    port: 8000
+    # opzionale: comandi da eseguire prima del deploy (es. migrar db)
+    # buildCommand: ""
+    # startCommand: ""
