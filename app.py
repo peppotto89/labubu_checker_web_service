@@ -7,7 +7,7 @@ app = FastAPI()
 @app.get("/checkk")
 async def check_buttons():
     return JSONResponse(content={
-            "status": "ohohohohooh111111",
+            "status": "ohohohohooh222222",
             "error": "error erroe"
         }, status_code=500)
         
