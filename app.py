@@ -8,7 +8,18 @@ app = FastAPI()
 
 @app.get("/checkpp")
 async def checkpypeter():
-    browser = await launch(headless=False)  # testa con headless=False per debug
+    browser = await launch(
+        headless=True,
+        args=[
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-gpu',
+            '--disable-dev-shm-usage',
+            '--single-process',
+            '--no-zygote',
+            '--disable-software-rasterizer',
+        ],
+    )
     page = await browser.newPage()
 
     # Stealth manuale semplice
@@ -45,7 +56,7 @@ async def checkpypeter():
 @app.get("/checkk")
 async def check_buttons():
     return JSONResponse(content={
-            "status": "ohohohohoo111111",
+            "status": "ohohohohoo22222",
             "prova": "prova"
         }, status_code=500)
         
