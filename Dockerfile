@@ -41,9 +41,6 @@ RUN apt-get update && apt-get install -y \
 # Installiamo pyppeteer tramite pip
 RUN pip install --no-cache-dir pyppeteer==0.2.6 fastapi uvicorn
 
-RUN pip install playwright
-RUN playwright install
-
 # Scarichiamo Chromium per pyppeteer
 RUN python -c "from pyppeteer import chromium_downloader; chromium_downloader.download_chromium()"
 
