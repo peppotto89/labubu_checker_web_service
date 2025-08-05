@@ -1,1 +1,3 @@
 pip install playwright
+pip uninstall -y websockets
+pip install -r requirements.txt
