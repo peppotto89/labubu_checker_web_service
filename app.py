@@ -4,6 +4,13 @@ from playwright.async_api import async_playwright
 
 app = FastAPI()
 
+@app.get("/checkk")
+async def check_buttons():
+    return JSONResponse(content={
+            "status": "ohohohohooh",
+            "error": "error erroe"
+        }, status_code=500)
+        
 @app.get("/check")
 async def check_buttons():
     try:
