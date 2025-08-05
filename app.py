@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from playwright.async_api import async_playwright
+import traceback
 
 app = FastAPI()
 
@@ -36,5 +37,7 @@ async def check_buttons():
     except Exception as e:
         return JSONResponse(content={
             "status": "error",
-            "error": str(e)
+            "error": str(e),
+            "error_type": type(e).__name__,
+            "traceback": traceback.format_exc()
         }, status_code=500)
