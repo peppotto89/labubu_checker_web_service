@@ -8,7 +8,7 @@ app = FastAPI()
 @app.get("/checkk")
 async def check_buttons():
     return JSONResponse(content={
-            "status": "ohohohohoo777777",
+            "status": "ohohohohoo88888",
             "prova": "prova"
         }, status_code=500)
         
@@ -21,9 +21,7 @@ async def check_buttons():
             page = await context.new_page()
             await page.goto("https://www.popmart.com/it/products/5610", timeout=30000)
             await page.wait_for_timeout(15000)  # aspetta caricamento
-
-            await page.wait_for_selector("div.index_euBtn__7NmZ6.index_red__kx6Ql", timeout=15000)
-
+            
             # Cerca bottone BUY NOW per testo (case insensitive)
             #buy_now_count = await page.locator("text=/BUY NOW/i").count()
             # Cerca bottone ADD TO CART per testo (case insensitive)
