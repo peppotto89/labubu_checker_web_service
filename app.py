@@ -41,9 +41,9 @@ async def checkpypeter():
     #add_to_cart = await page.querySelectorEval('div', '''(els) => {
     #    return Array.from(document.querySelectorAll('div')).some(el => el.innerText.toLowerCase().includes('add to cart'));
     #}''')
-    content_exists = await page.evaluate('''() => {
-        return document.body.innerText.trim().length > 0;
-    }''', timeout = 15000)
+    #content_exists = await page.evaluate('''() => {
+    #    return document.body.innerText.trim().length > 0;
+    #}''', timeout = 15000)
 
     if content_exists:
         print("content presente!")
